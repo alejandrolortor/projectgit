@@ -19,7 +19,7 @@ static Scanner keyboard= new Scanner (System.in);
     }
     private static char DNIletter(int dni){
         char letter='z';
-        String letters=" ";
+        String letters="TRWAGMYFPDXBNJZSQVHLCKE";
         int res=dni%23;
         letter=letters.charAt(res);
         return letter;
