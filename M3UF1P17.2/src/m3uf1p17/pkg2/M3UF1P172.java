@@ -17,25 +17,76 @@ public class M3UF1P172 {
 static Scanner keyboard = new Scanner(System.in);
     
     public static void main(String[] args) {
-        
-        int euro;
-        System.out.println("Euros?");
-        euro=keyboard.nextInt();
-        double preu = 100, tax = 21, res;
-        res = FuncionLORA(preu, tax);
-        methodLORA(preu, tax, res);
-        float result = conversorLORA1(euro);
-        double resultD = conversorLORA2(euro);
-        String resultS = conversorLORA3(euro);
-        System.out.println(result);
+        DecimalFormat df =new DecimalFormat("0.000");
+        String str = "";
+        int euro = 0;
+
+ 
+        String key;
+        int option = -1;
+        keyboard.useDelimiter("\n");
+        do {
+
+            userMenu();
+            option = keyboard.nextInt();
+            switch (option) {
+                case 1:
+                    conversorLORA1(euro);
+                    System.out.println("Euros?");
+                    euro=keyboard.nextInt();
+                    float resultF = conversorLORA1(euro);
+                    System.out.println (df.format(resultF));
+                    
+                    break;
+                case 2:
+                   conversorLORA2(euro);
+                    System.out.println("Euros?");
+                    euro=keyboard.nextInt();
+                    double resultD = conversorLORA2(euro);
+                    System.out.println (df.format(resultD));
+                    break;
+                case 3:
+                   conversorLORA3(euro);
+                   System.out.println("Euros?");
+                   euro=keyboard.nextInt();
+                   String resultS = conversorLORA3(euro);
+                   System.out.println (resultS);
+                    break;
+
+                case 8:
+                    conversorLORA8(str);
+                    System.out.println("palabra");
+                    str=keyboard.next();
+                    String strResult =conversorLORA8(str);
+                    System.out.println(strResult+" ");
+                    break;
+                default:
+                    System.out.println("This option is not valid");
+            }
+            System.out.println("press any key to continue");
+            key = keyboard.next();
+        } while (option != 0);
+    }
+    
+        private static void userMenu() {
+        System.out.println("Option1: ():");
+        System.out.println("Option2: ():");
+        System.out.println("Option3: ():");
+        System.out.println("Option4: ():");
+        System.out.println("Option5: ():");
+        System.out.println("Option6: ():");
+        System.out.println("Option7: ():");
+        System.out.println("Option8: ():");
+        System.out.println("Option9: ():");
+        System.out.println("Option0: (exit):");
+        System.out.print("\n\n choose your option: ");
 
     }
 
     private static float conversorLORA1(int euro) {
-        DecimalFormat df =new DecimalFormat("0.000");
         float result = 0;
         result =Float.valueOf(euro)/0.91f;
-        return df.format(result);
+        return (result);
     }
     private static double conversorLORA2(int euro) {
         double result = 0;
@@ -48,21 +99,21 @@ static Scanner keyboard = new Scanner(System.in);
         result =String.valueOf(euro/0.91);
         return result;
     }
-
-    private static double FuncionLORA(double price, double iva) {
-        double PVP = 0;
-        PVP = price + price * (iva / 100);
-
-        return PVP;
-
+    
+   
+    private static String conversorLORA8(String str) {
+        String result="";
+        char ch=' ';
+        for(int i=0; i<str.length();i++){
+        ch=str.charAt(i);
+        result+=Integer.toBinaryString(ch);
+        }
+        return result;
     }
-    public static final String ANSI_GREEN = "\u001B[32m";
-
-    public static void methodLORA(double price, double iva, double res) {
-
-        System.out.println(ANSI_GREEN + "Precio unitario " + price + "Pordentaje iva " + iva + "Precio final " + res);
-
-    }
+        
+    
+    
 }
+
 
 
